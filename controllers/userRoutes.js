@@ -2,7 +2,8 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
 
-//passport set up
+//==============================
+//      passport set up
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
 
@@ -47,10 +48,6 @@ router.post('/register', (req, res) => {
   let newUser = new User({username: req.body.username});
   User.register(newUser, req.body.password, (err, user) => {
     if(err){
-      console.log(newUser);
-      console.log(req.body);
-      console.log(req.body.password);
-      console.log(user);
       console.log(err, 'err in create new user');
       return res.render('../views/userViews/new.ejs')
     } else {

@@ -4,7 +4,6 @@ const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
 
 
-
 require('./db/db');
 
 app.use(bodyParser.json());
@@ -26,7 +25,12 @@ app.use('/piggybank', userRoutes);
 
 
 
+const userRoutes = require('./controllers/userRoutes');
+
+app.use('/login', userRoutes);
+
 
 app.listen(3000, () => {
     console.log('i am watching....')
 });
+

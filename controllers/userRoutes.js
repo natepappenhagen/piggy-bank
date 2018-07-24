@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
+const CoinMarketData = require('../models/coinmarketcapData');
 
 //==============================================
 //      passport set up
@@ -35,26 +36,24 @@ const isLoggedIn = (req, res, next) => {
 //             Routes
 
 
-//login or register route
-router.get('/', (req, res) => {
-  res.render('../views/userViews/index.ejs');
-});
-
 /////                     CMC API TESTING                //
 var CoinMarketCap = require("node-coinmarketcap");
 var cmc = new CoinMarketCap();
 // If you want to check a single coin, use get() (You need to supply the coinmarketcap id of the cryptocurrency, not the symbol)
 // If you want to use symbols instead of id, use multi.
-cmc.get("bitcoin", coin => {
-  console.log(coin.price_usd); // Prints the price in USD of BTC at the moment.
-});
+// cmc.get("bitcoin", coin => {
+//   console.log(coin.price_usd); // Prints the price in USD of BTC at the moment.
+// });
 // If you want to check multiple coins, use multi():
-cmc.multi(coins => {
-  console.log(coins.get("BTC").price_usd); // Prints price of BTC in USD
-  console.log(coins.get("ETH").price_usd); // Print price of ETH in USD
-  console.log(coins.get("ETH").price_btc); // Print price of ETH in BTC
-  console.log(coins.getTop(10)); // Prints information about top 10 cryptocurrencies
-});
+// cmc.multi(coins => {
+//   console.log(coins.get("BTC").price_usd); // Prints price of BTC in USD
+//   console.log(coins.get("ETH").price_usd); // Print price of ETH in USD
+//   console.log(coins.get("ETH").price_btc); // Print price of ETH in BTC
+//   console.log(coins.getTop(10)); // Prints information about top 10 cryptocurrencies
+// });
+
+
+
 //=====================================================
 
 
@@ -104,7 +103,19 @@ router.post('/register', (req, res) => {
 
 //Login Routes
 router.get('/login', (req, res) => {
-  res.render('../views/userViews/login.ejs')
+
+  cmc.multi(coins => {
+    coins.getTop();
+
+    res.render('../views/userViews/login.ejs', {
+      coins: coins
+
+  });
+
+
+  });
+
+
 });
 
 router.post('/login', passport.authenticate('local', {
@@ -123,7 +134,7 @@ router.get('/logout', (req, res) => {
 
 //=========================================================
 //                  Coin Routes
-const CoinMarketData = require('../models/coinmarketcapData')
+
 
 router.get('/portfolio', isLoggedIn, (req, res) => {
   res.render('../views/userViews/show.ejs', {

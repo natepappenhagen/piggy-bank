@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const User = require('../models/users');
 
-//==============================
+//==============================================
 //      passport set up
 const passport = require('passport');
 const LocalStrategy = require('passport-local');
@@ -26,7 +26,12 @@ const isLoggedIn = (req, res, next) => {
 }
 
 
-//========================================
+
+
+
+
+
+//===============================================================
 //             Routes
 
 
@@ -35,10 +40,45 @@ router.get('/', (req, res) => {
   res.render('../views/userViews/index.ejs');
 });
 
+/////                     CMC API TESTING                //
+var CoinMarketCap = require("node-coinmarketcap");
+var cmc = new CoinMarketCap();
+// If you want to check a single coin, use get() (You need to supply the coinmarketcap id of the cryptocurrency, not the symbol)
+// If you want to use symbols instead of id, use multi.
+cmc.get("bitcoin", coin => {
+  console.log(coin.price_usd); // Prints the price in USD of BTC at the moment.
+});
+// If you want to check multiple coins, use multi():
+cmc.multi(coins => {
+  console.log(coins.get("BTC").price_usd); // Prints price of BTC in USD
+  console.log(coins.get("ETH").price_usd); // Print price of ETH in USD
+  console.log(coins.get("ETH").price_btc); // Print price of ETH in BTC
+  console.log(coins.getTop(10)); // Prints information about top 10 cryptocurrencies
+});
+//=====================================================
+
+
+//login or register route
+router.get('/coin', (req, res) => {
+
+  cmc.get("ethereum", coin => {
+
+     res.render('../views/userViews/show.ejs', {
+      coin: coin
+     } );
+//    res.send(coin.price_usd);
+  })
+});
+
+
+
+
 //secret page(aka specific users profile page)
-router.get('/secret', isLoggedIn, (req, res) => {
+router.get('/coin', isLoggedIn, (req, res) => {
   res.render('../views/userViews/show.ejs');
 });
+
+
 //add new users
 router.get('/register', (req, res) => {
   res.render('../views/userViews/new.ejs');
@@ -68,7 +108,7 @@ router.get('/login', (req, res) => {
 });
 
 router.post('/login', passport.authenticate('local', {
-  successRedirect: '/piggybank/secret',
+  successRedirect: '/piggybank/portfolio',
   failureRedirect: '/piggybank/login'
 }), (req, res) => {
 });
@@ -80,9 +120,24 @@ router.get('/logout', (req, res) => {
 });
 
 
-//edit users
 
-//delete users
+//=========================================================
+//                  Coin Routes
+const CoinMarketData = require('../models/coinmarketcapData')
+
+router.get('/portfolio', isLoggedIn, (req, res) => {
+  res.render('../views/userViews/show.ejs', {
+    coin: CoinMarketData
+  })
+});
+
+router.get('/portfolio/addcoin', isLoggedIn, (req, res) => {
+  res.render('../views/transactionViews/new.ejs', {
+
+  })
+})
+
+
 
 
 

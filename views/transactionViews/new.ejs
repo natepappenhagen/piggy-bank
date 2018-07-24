@@ -33,9 +33,26 @@
       </nav>
 
 
-        <h1>new transaction page</h1>
+        <h1>new coin page</h1>
+
+        <h4>add transaction</h4>
 
 
+
+        <div class="addTransactionForm">
+          <form action="/piggybank/portfolio" method="post">
+            <div class="form-group">
+              <input type="number" name="marketPriceUSD" class="form-control" placeholder="Enter Market Price">
+            </div>
+            <div class="form-group">
+              <input type="number" name="cost" class="form-control" placeholder="Enter Cost">
+            </div>
+            <div class="form-group">
+              <input type="number" name="numOfHoldings" class="form-control" placeholder="Enter Number of Coins">
+            </div>
+            <button type="submit" class="btn btn-primary">Add</button>
+          </form>
+        </div>
 
 
     </div>

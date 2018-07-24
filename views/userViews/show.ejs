@@ -37,7 +37,17 @@
 
         <h1>coins</h1>
 
-        <a href="/piggybank/addcoin">add coin</a>
+        <% coin.forEach((coin) => { %>
+      <div class="row-5">
+
+        <a href="/piggybank/portfolio/addcoin"> <%=coin.name%> </a>
+      </div>
+
+  <% }) %>
+
+
+        <%= JSON.stringify(coin) %>
+        <%= coin.percent_change_24h %>%
 
 
 

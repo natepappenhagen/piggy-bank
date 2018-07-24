@@ -6,7 +6,8 @@ const methodOverride = require('method-override');
 
 require('./db/db');
 
-app.use(bodyParser.urlencoded({extended: false}));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
 app.use(methodOverride('_method'));
 app.use(express.static('public'));
 
@@ -16,7 +17,9 @@ const userRoutes = require('./controllers/userRoutes');
 
 
 
-
+app.get('/', (req, res) => {
+  res.redirect('/piggybank')
+});
 
 app.use('/piggybank', userRoutes);
 

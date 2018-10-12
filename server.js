@@ -2,8 +2,7 @@ const express = require('express');
 const app = express();
 const bodyParser = require('body-parser');
 const methodOverride = require('method-override');
-
-
+const port = process.env.Port || 3000;
 require('./db/db');
 
 app.use(bodyParser.json());
@@ -15,22 +14,17 @@ const User = require('./models/users');
 const userRoutes = require('./controllers/userRoutes');
 
 
-
-
 app.get('/', (req, res) => {
-  res.redirect('/piggybank')
+  res.redirect('/piggybank/')
 });
 
-app.use('/piggybank', userRoutes);
+app.use('/piggybank/', userRoutes);
 
 
 
-const userRoutes = require('./controllers/userRoutes');
-
-app.use('/login', userRoutes);
 
 
-app.listen(3000, () => {
-    console.log('i am watching....')
+
+app.listen(port, () => {
+    console.log('listening on port' + port)
 });
-

@@ -1,12 +1,12 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://localhost/piggy_bank")
+const mongodb = process.env.MONGODB_URI || 'localhost';
+mongoose.connect(process.env.NODE_ENV)
 mongoose.connection.on("connected", () => {
-	console.log("connected to data BASS");
+  console.log("connected to database");
 });
 mongoose.connection.on("error", (err) => {
-	console.log("fucking up");
+  console.log("error");
 });
 mongoose.connection.on("disconnected", () => {
-	console.log("we gone");
+  console.log("disconnected");
 });
-

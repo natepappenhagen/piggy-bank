@@ -9,35 +9,74 @@
   </head>
   <body>
 
-    <div class="container">
+    <div class="container-fluid">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="/piggybankIconNoBG.png" width="75" height="75" class="d-inline-block align-top" alt="">
-          <img src="/logo2.png" width="120" height="75" class="d-inline-block align-top" alt="">
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/piggybank/<%=userID%>/portfolio">
+          <img src="/piggybankIconNoBG.png" width="95" height="95" class="d-inline-block align-top" alt="">
+          <img src="/logo2.png" width="150" height="95" class="d-inline-block align-top" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/piggybank/login">Login</a>
+              <a class="nav-link" href="/piggybank/<%= userID %>/logout">Logout</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/piggybank/register">Register</a>
-            </li>
+
           </ul>
         </div>
       </nav>
 
+        <div class="sym">
+          <h1> <%=sym%> </h1>
+          </div>
 
-        <h1>show transaction page</h1>
+        <h4>LIVE Coin Status</h4>
+<div class="row">
+        <div class="col currentPrice">
+        <h2 class="h2class"> $<%= coinData["RAW"][sym]["USD"]["PRICE"] %> </h2>
+        <label for="price">Current Price</label>
+      </div>
+      <div class="col change24">
+        <h2 class="h2class"> $<%= parseFloat(coinData["RAW"][sym]["USD"]["CHANGE24HOUR"]).toFixed(2) %> </h2>
+        <label for="change24">Change (24HR)</label>
+      </div>
+      <div class="col totalVol">
+        <h2 class="h2class"> <%= parseFloat(coinData["RAW"][sym]["USD"]["TOTALVOLUME24H"]).toFixed(2) %> </h2>
+        <label for="totalVol">Total Volume (24HR)</label>
+      </div>
+</div>
+<div class="row userCoinInfo">
+  <div class="col hold">
+    <h3 class="h3class"> <%=hold%> </h3>
+    <label class="labelz" for="hold"># Coins Holding</label>
+  </div>
+  <div class="col costAtPurchase">
+    <h3 class="h3class"> $<%=cost%> </h3>
+    <label class="labelz" for="costAtPurchase">Cost at Purchase</label>
+  </div>
+</div>
+<div class="row investmentInfo">
+<div class="col initial">
+        <% let initialInvestment = hold * cost %>
+        <h3 class="h3class"> $<%=parseFloat(initialInvestment).toFixed(2)%> </h3>
+        <label for="initial">Initial Investment</label>
+      </div>
+      <div class="col cValue">
+        <% let currentValue = coinData["RAW"][sym]["USD"]["PRICE"] * hold %>
+        <h3 class="h3class"> $<%=parseFloat(currentValue).toFixed(2)%> </h3>
+        <label for="cValue">Current Value</label>
+</div>
+<div class="col tGainLoss">
+        <% let gainLoss = currentValue - initialInvestment %>
+        <h3 class="h3class"> $<%=parseFloat(gainLoss).toFixed(2)%> </h3>
+        <label for="tGainLoss">Total Gain/Loss</label>
+      </div>
+</div>
 
-
-
-
+<form action="/piggybank/<%= userID %>/portfolio/<%= holdingid %>?_method=DELETE" method="POST">
+  <input type="submit" value="Go Back" class="deleteBTN">
+</form>
 
 
 

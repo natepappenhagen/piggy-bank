@@ -6,49 +6,43 @@
     <link rel="stylesheet" href="/style.css">
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
 
-    <div class="container">
+    <div class="container-fluid">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">
-          <img src="/piggybankIconNoBG.png" width="75" height="75" class="d-inline-block align-top" alt="">
-          <img src="/logo2.png" width="120" height="75" class="d-inline-block align-top" alt="">
+      <nav class="navbar navbar-expand-lg">
+        <a class="navbar-brand" href="/piggybank/login">
+          <img src="/piggybankIconNoBG.png" width="95" height="95" class="d-inline-block align-top" alt="">
+          <img src="/logo2.png" width="150" height="95" class="d-inline-block align-top" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
-              <a class="nav-link" href="/piggybank/login">Login</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="/piggybank/register">Register</a>
+              <a class="nav-link" href="/piggybank/logout">Logout</a>
             </li>
           </ul>
         </div>
       </nav>
 
+</br>
+        <h4>Add Transaction/Holding</h4>
 
-        <h1>new coin page</h1>
-
-        <h4>add transaction</h4>
-
+</br>
 
 
         <div class="addTransactionForm">
-          <form action="/piggybank/portfolio" method="post">
+          <form action="/piggybank/<%=user.id%>/portfolio" method="post">
             <div class="form-group">
-              <input type="number" name="marketPriceUSD" class="form-control" placeholder="Enter Market Price">
+              <input type="text" name="symbol" class="form-control" placeholder="Enter Symbol You Want To Track">
             </div>
             <div class="form-group">
-              <input type="number" name="cost" class="form-control" placeholder="Enter Cost">
+              <input type="number" name="cost" step="any" min="0" class="form-control" placeholder="Enter Cost">
             </div>
             <div class="form-group">
-              <input type="number" name="numOfHoldings" class="form-control" placeholder="Enter Number of Coins">
+              <input type="number" name="numOfHoldings" step="0.01" min="0" class="form-control" placeholder="Enter Number of Coins">
             </div>
             <button type="submit" class="btn btn-primary">Add</button>
           </form>

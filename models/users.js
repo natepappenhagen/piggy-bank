@@ -1,11 +1,12 @@
 const mongoose = require('mongoose');
 const passportLocalMongoose = require('passport-local-mongoose');
-const Coin = require('./coins.js');
+const Holding = require('./holdings.js');
 
 const UserSchema = new mongoose.Schema({
+  fame: String,
   username: String,
   password: String,
-  // portfolio: [Coin.schema],
+  portfolio: [Holding.schema],
 
 });
 

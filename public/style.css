@@ -1,3 +1,114 @@
+.container-fluid {
+  /* background-color: rgb(53, 58, 63); */
+  padding-bottom: 300px;
+  color: darkgray;
+}
+
 .loginForm {
-  margin-top: 15px;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+
+.coinData {
+  display: inline;
+  height: 130px;
+  background-color: rgba(255, 32, 148, 0.6);
+  color: white;
+  font-size: 16px;
+  margin: 20px;
+  padding-top: 10px;
+  border-style: solid white 10px;
+}
+
+.symbol {
+  text-align: left;
+  font-weight: bold;
+  width: 45px;
+  height: 30px;
+  background-color: rgba(53, 58, 63, 0.6);
+}
+.price {
+  text-align: center;
+  font-size: 33px;
+  margin-top: 5px;
+}
+.percent {
+  text-align: left;
+  margin-top: 7px;
+
+}
+.portfolioTitle {
+  margin-top: 40px;
+  margin-bottom: 40px;
+  text-align: center;
+}
+
+.anchor {
+  align-self: center;
+  background-color: rgba(94, 202, 157, 1.0);
+  color: white;
+  margin-top: 40px;
+  margin-bottom: 30px;
+  padding: 20px;
+
+}
+
+.holdingRow {
+  margin: 25px;
+}
+
+.labelz {
+  color: white;
+  font-weight: 500;
+}
+
+.coinsHeldOnUserShow {
+
+  font-size: 35px;
+  background-color: rgba(255, 32, 148, 0.75);
+  height: 60px;
+  margin-top: 30px;
+  margin: 35px;
+
+  padding-right: 60px;
+}
+.sym {
+  text-align: center;
+  font-size: 80px;
+  margin: 45px;
+}
+
+.h2class {
+  font-size: 50px;
+  color: rgba(255, 32, 148, 1.0);
+}
+.h3class {
+  color: rgba(255, 32, 148, 1.0);
+  font-weight: 800;
+}
+.hold {
+  background-color: rgba(94, 202, 157, 0.6);
+  padding: 30px;
+}
+.costAtPurchase {
+  background-color: rgba(94, 202, 157, 0.6);
+  padding: 30px;
+}
+
+
+.userCoinInfo {
+  margin-top: 50px;
+}
+
+.investmentInfo {
+  margin-top: 50px;
+}
+
+.deleteBTN {
+  margin-top: 10px;
+  padding: 10px;
+  background-color: rgba(94, 202, 157, 0.85);
+  color: white;
+  font-weight: bold;
 }

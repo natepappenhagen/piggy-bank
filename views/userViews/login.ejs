@@ -13,24 +13,21 @@
 
 
   <body>
-    <div class="container">
+    <div class="container-fluid">
 
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <nav class="navbar navbar-expand-lg">
         <a class="navbar-brand" href="#">
-          <img src="/piggybankIconNoBG.png" width="75" height="75" class="d-inline-block align-top" alt="">
-          <img src="/logo2.png" width="120" height="75" class="d-inline-block align-top" alt="">
+          <img src="/piggybankIconNoBG.png" width="95" height="95" class="d-inline-block align-top" alt="">
+          <img src="/logo2.png" width="150" height="95" class="d-inline-block align-top" alt="">
         </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
 
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <div>
           <ul class="navbar-nav mr-auto">
             <li class="nav-item">
               <a class="nav-link" href="/piggybank/login">Login</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="/piggybank/register">Register</a>
+              <a class="nav-link" href="/piggybank/new">Register</a>
             </li>
           </ul>
         </div>
@@ -40,10 +37,10 @@
       <div class="loginForm">
         <form action="/piggybank/login" method="post">
           <div class="form-group">
-            <input type="text" name="username" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Username">
+            <input type="text" name="username" class="form-control" placeholder="Enter Username">
           </div>
           <div class="form-group">
-            <input type="password" name="password" class="form-control" id="exampleInputPassword1" placeholder="Enter Password">
+            <input type="password" name="password" class="form-control" placeholder="Enter Password">
           </div>
           <button type="submit" class="btn btn-primary">Log In</button>
         </form>
@@ -52,14 +49,23 @@
 
 
 
-      <h1>Top Ten Coins</h1>
+      <h3>Top Ten Coins</h3>
 
-      <%= JSON.stringify(coins) %>
-
-
+<div class="row loginRow">
 
 
+    <% for (let key in coinData["RAW"]){ %>
+        <% let key1 = key; %>
+        <% let key2 = coinData["RAW"][key]["USD"]["PRICE"]; %>
+        <% let key3 = coinData["RAW"][key]["USD"]["CHANGEPCT24HOUR"]; %>
+        <div class="col-2 coinData">
+        <div class="symbol"><%= key1 %></div>
+        <div class="price"> $<%= parseFloat(key2).toFixed(2) %> </div>
+        <div class="percent"> [<%= parseFloat(key3).toFixed(2) %>%] </div>
+      </div>
+    <% } %>
 
+</div>
     </div>
   </body>
 </html>

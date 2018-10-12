@@ -1,1 +1,14 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
 
+    <% users.forEach((user) => { %>
+      <a href="/piggybank/<%=user.id%>"> <%= user %> </p> </a>
+  <% }) %>
+
+  </body>
+</html>
